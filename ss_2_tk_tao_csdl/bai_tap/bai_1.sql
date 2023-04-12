@@ -1,7 +1,6 @@
 CREATE DATABASE bai_tap_1;
 USE bai_tap_1;
 
-
 CREATE TABLE nha_cung_cap (
     ma_ncc INT AUTO_INCREMENT PRIMARY KEY,
     ten_ncc VARCHAR(50),
@@ -25,7 +24,7 @@ CREATE TABLE vat_tu(
     ten_vat_tu varchar(50)
 );
 
- CREATE TABLE kho_hang(
+ CREATE TABLE don_DH_vat_tu(
  ma_vat_tu INT,
  so_DH INT,
  PRIMARY KEY(ma_vat_tu,so_DH),
@@ -43,7 +42,7 @@ CREATE TABLE phieu_xuat(
  CREATE TABLE quan_li_xuat(
 	so_phieu_xuat INT,
     ma_vat_tu INT,
-    don_gia_xuat FLOAT,
+    don_gia_xuat INT,
     san_luong_xuat INT,
     PRIMARY KEY(so_phieu_xuat,ma_vat_tu),
     FOREIGN KEY(so_phieu_xuat) REFERENCES phieu_xuat(so_phieu_xuat),
@@ -58,7 +57,7 @@ CREATE TABLE phieu_nhap(
 CREATE TABLE quan_li_nhap(
 	so_PN INT,
 	ma_vat_tu INT,
-    don_gia_nhap FLOAT,
+    don_gia_nhap INT,
     so_luong_nhap INT,
     PRIMARY KEY(so_PN,ma_vat_tu),
     FOREIGN KEY(so_PN) REFERENCES phieu_nhap(so_PN),
