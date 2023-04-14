@@ -17,3 +17,17 @@ JOIN hop_dong hd ON dv.ma_dich_vu=hd.ma_dich_vu
 WHERE dv.ma_dich_vu IN (SELECT hd.ma_dich_vu FROM hop_dong hd WHERE  YEAR (hd.ngay_lam_hop_dong)=2020)
 AND dv.ma_dich_vu NOT IN (SELECT hd.ma_dich_vu FROM hop_dong hd WHERE  YEAR (hd.ngay_lam_hop_dong)=2021)
 GROUP BY hd.ma_dich_vu;
+
+-- 8.	Hiển thị thông tin ho_ten khách hàng có trong hệ thống, với yêu cầu ho_ten không trùng nhau.
+-- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên.
+
+-- Cách 1
+SELECT DISTINCT(ho_ten) FROM khach_hang;
+
+-- Cách 2
+SELECT ho_ten FROM khach_hang
+GROUP BY ho_ten;
+
+-- Cách 3
+SELECT DISTINCT(ho_ten) FROM khach_hang
+WHERE ho_ten IN (SELECT ho_ten FROM khach_hang);
