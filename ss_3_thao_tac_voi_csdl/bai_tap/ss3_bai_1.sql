@@ -1,5 +1,6 @@
 CREATE DATABASE quan_ly_sinh_vien;
 USE quan_ly_sinh_vien;
+
 CREATE TABLE classes(
     id   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(60) NOT NULL,
@@ -22,7 +23,7 @@ CREATE TABLE subjects(
     `status`  BIT                  DEFAULT 1
 );
 
-CREATE TABLE mark(
+CREATE TABLE exam(
     id    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     sub_id     INT NOT NULL,
     student_id INT NOT NULL,
@@ -54,7 +55,7 @@ VALUES (1, 'CF', 5, 1),
        (3, 'HDJ', 5, 1),
        (4, 'RDBMS', 10, 1);
        
-INSERT INTO mark (sub_id, student_id, mark, exam_times)
+INSERT INTO exam (sub_id, student_id, mark, exam_times)
 VALUES (1, 1, 8, 1),
        (1, 2, 10, 2),
        (2, 1, 12, 1);       
@@ -73,8 +74,8 @@ UPDATE student SET class_id=2
 WHERE `name`="Hung";
 SET SQL_SAFE_UPDATES=1;
 
-SELECT s.`name` AS name_sutdent ,sub.`name` AS subjects_name,m.mark
-FROM  mark m
-JOIN student s ON s.id=m.student_id
-JOIN subjects sub ON sub.id =m.sub_id
-ORDER BY m.mark DESC;	
+SELECT s.`name` AS name_sutdent ,sub.`name` AS subjects_name,e.mark
+FROM  exam e
+JOIN student s ON s.id=e.student_id
+JOIN subjects sub ON sub.id =e.sub_id
+ORDER BY e.mark DESC, name_sutdent ASC;	
