@@ -52,7 +52,7 @@ CREATE TABLE khach_hang(
     
 CREATE TABLE loai_dich_vu(
 ma_loai_dich_vu INT PRIMARY KEY,
-ten_dich_vu VARCHAR(45)
+ten_loai_dich_vu VARCHAR(45)
 );
 
 CREATE TABLE kieu_thue(
@@ -180,7 +180,7 @@ INSERT INTO hop_dong VALUES (1,"2020-12-08","2020-12-08",0,3,1,3),
 							(10,"2021-04-12","2021-04-14",0,10,3,5),
 							(11,"2021-04-25","2021-04-25",0,2,2,1),
 							(12,"2021-05-25","2021-05-27",0,7,10,1);
-                            
+
 -- Thêm dữ liệu vào bảng hợp đồng chi tiết
 INSERT INTO hop_dong_chi_tiet VALUES(1,5,2,4),
 									(2,8,2,5),
@@ -193,18 +193,40 @@ INSERT INTO hop_dong_chi_tiet VALUES(1,5,2,4),
 
 -- Task 3
 
--- Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” 
+-- 2. Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” 
 -- và có tối đa 15 kí tự.
 SELECT * FROM nhan_vien
 WHERE ho_ten LIKE 'H%' OR ho_ten LIKE 'T%' OR ho_ten LIKE 'K%'
 AND LENGTH(ho_ten) <= 15;
 
--- Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi
+-- 3. Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi
 -- và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
-SELECT *,year(curdate())-year(ngay_sinh) AS so_tuoi FROM khach_hang
-WHERE dia_chi LIKE'% Đà Nẵng' OR dia_chi LIKE'% Quảng Trị'
-HAVING so_tuoi BETWEEN 18 AND 50;
+SELECT * FROM khach_hang
+WHERE round(datediff(curdate(),ngay_sinh)/365) BETWEEN 18 AND 50 AND (dia_chi LIKE'% Đà Nẵng' OR dia_chi LIKE'% Quảng Trị');
 
--- Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần.
+-- 4. Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần.
 -- Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng.
 -- Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.
+SELECT kh.*,lk.ten_loai_khach,count(kh.ma_khach_hang) AS so_lan_dat_phong
+FROM khach_hang kh
+JOIN loai_khach lk ON lk.ma_loai_khach=kh.ma_khach_hang 
+JOIN hop_dong hd ON hd.ma_khach_hang =kh.ma_khach_hang
+WHERE lk.ten_loai_khach="Diamond"
+GROUP BY kh.ma_khach_hang
+ORDER BY so_lan_dat_phong DESC;
+
+-- 5.Hiển thị ma_khach_hang, ho_ten, ten_loai_khach, ma_hop_dong, ten_dich_vu, ngay_lam_hop_dong, ngay_ket_thuc, tong_tien 
+-- (Với tổng tiền được tính theo công thức như sau: Chi Phí Thuê + Số Lượng * Giá, với Số Lượng và Giá là từ bảng dich_vu_di_kem, hop_dong_chi_tiet) 
+-- cho tất cả các khách hàng đã từng đặt phòng. (những khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra).
+
+SELECT kh.ma_khach_hang,kh.ho_ten,lk.ten_loai_khach,hd.ma_hop_dong,dv.ten_dich_vu,hd.ngay_lam_hop_dong,hd.ngay_ket_thuc, ifnull(dv.chi_phi_thue+ifnull((hdct.so_luong*dvdk.gia),0),0) AS tong_tien
+FROM khach_hang kh
+LEFT JOIN hop_dong hd ON hd.ma_khach_hang=kh.ma_khach_hang
+LEFT JOIN dich_vu dv ON dv.ma_dich_vu= hd.ma_dich_vu
+JOIN loai_khach lk ON lk.ma_loai_khach=kh.ma_khach_hang 
+LEFT JOIN hop_dong_chi_tiet hdct ON hdct.ma_hop_dong = hd.ma_hop_dong
+LEFT JOIN dich_vu_di_kem dvdk ON hdct.ma_dich_vu_di_kem =dvdk.ma_dich_vu_di_kem
+ORDER BY tong_tien;
+
+
+
