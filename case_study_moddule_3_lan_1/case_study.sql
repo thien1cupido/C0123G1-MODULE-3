@@ -190,3 +190,21 @@ INSERT INTO hop_dong_chi_tiet VALUES(1,5,2,4),
 									(6,1,1,3),
 									(7,2,1,2),
 									(8,2,12,2);
+
+-- Task 3
+
+-- Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” 
+-- và có tối đa 15 kí tự.
+SELECT * FROM nhan_vien
+WHERE ho_ten LIKE 'H%' OR ho_ten LIKE 'T%' OR ho_ten LIKE 'K%'
+AND LENGTH(ho_ten) <= 15;
+
+-- Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi
+-- và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
+SELECT *,year(curdate())-year(ngay_sinh) AS so_tuoi FROM khach_hang
+WHERE dia_chi LIKE'% Đà Nẵng' OR dia_chi LIKE'% Quảng Trị'
+HAVING so_tuoi BETWEEN 18 AND 50;
+
+-- Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần.
+-- Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng.
+-- Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.

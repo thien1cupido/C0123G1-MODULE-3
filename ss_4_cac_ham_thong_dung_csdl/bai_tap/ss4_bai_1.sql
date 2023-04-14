@@ -58,23 +58,21 @@ INSERT INTO mark (sub_id, student_id, mark, exam_times)
 VALUES (1, 1, 8, 1),
        (1, 2, 10, 2),
        (2, 1, 12, 1);       
-        
-SELECT * FROM student
-WHERE `name` LIKE 'h%';
 
-SELECT * FROM classes
-HAVING month(start_date)=12;
+-- Hiển thị tất cả các thông tin môn học (bảng subject) có credit lớn nhất.
+SELECT *
+FROM subjects
+WHERE credit =(SELECT MAX(credit) FROM subjects);
 
-SELECT * FROM subjects
-WHERE credit BETWEEN 3 AND 5;
+-- Hiển thị các thông tin môn học có điểm thi lớn nhất.
+SELECT *
+FROM subjects s
+JOIN mark m ON s.id = m.sub_id
+WHERE mark =(SELECT MAX(mark) FROM mark);
 
-SET SQL_SAFE_UPDATES=0;
-UPDATE student SET class_id=2
-WHERE `name`="Hung";
-SET SQL_SAFE_UPDATES=1;
+-- Hiển thị các thông tin sinh viên và điểm trung bình của mỗi sinh viên, xếp hạng theo thứ tự điểm giảm dần
+SELECT s.*,avg(m.mark) AS avg_mark
+FROM student s
+JOIN mark m ON s.id = m.student_id
+GROUP BY student_id
 
-SELECT s.`name` AS name_sutdent ,sub.`name` AS subjects_name,m.mark
-FROM  mark m
-JOIN student s ON s.id=m.student_id
-JOIN subjects sub ON sub.id =m.sub_id
-ORDER BY m.mark DESC;	

@@ -35,7 +35,9 @@ CREATE TABLE student(
 									(2,"tran minh chien",'1985/3/2',200),
 									(3,"vu thanh tien",'1985/3/2',300),
 									(4,"tran van nam",'1989/12/12',100);
-						
-						
+                                    
+INSERT INTO student VALUES(1,"c1121g1"),(2,"c1121g1"),(3,"a0821i1"),(4,"a0921i1");
+SELECT * FROM instructor i
+join instructor_class ic ON 
                                     
                                     
