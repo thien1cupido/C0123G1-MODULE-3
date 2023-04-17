@@ -63,31 +63,31 @@ VALUE (id,product_code,product_name,product_price,product_amount,product_decript
 END //
 delimiter ;
 
-CALL update_product(6,6,"iphone13",3000,10,"moi",1);
-
 -- Tạo store procedure sửa thông tin sản phẩm theo id
 delimiter //
 CREATE PROCEDURE update_product(IN new_id INT,
-								IN new_code INT,
                                 IN new_name VARCHAR(50),
                                 IN new_price INT,
                                 IN new_amount INT,
                                 IN new_decription VARCHAR(50),
                                 IN new_status BIT(1))
 BEGIN
-UPDATE products SET new_code=product_code, 
-					new_name = product_name,
-					new_price=product_price,
-					new_amount= product_amount,
-					new_decription= product_decription, 
-					new_status=product_status 
+UPDATE products SET product_name=new_name,
+					product_price=new_price,
+					product_amount=new_amount,
+					product_decription=new_decription, 
+					product_status=new_status 
 WHERE new_id=id;
 END //
 delimiter ;
--- Tạo store procedure sửa thông tin sản phẩm theo id
-CREATE PROCEDURE delect_product(IN new_id INT)
+CALL update_product(3,"iphone10",2000,10,"moi",1);
+-- Tạo store procedure xóa thông tin sản phẩm theo id
+delimiter //
+CREATE PROCEDURE delect_product(IN delete_id INT)
 BEGIN
-DELETE product
-WHERE new_id=id;
+DELETE FROM products
+WHERE (delete_id=id);
 END //
 delimiter ;
+
+CALL delect_product(2);
