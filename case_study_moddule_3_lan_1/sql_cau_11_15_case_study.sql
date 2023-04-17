@@ -1,4 +1,4 @@
-USE case_study_1;
+USE furama;
 
 -- 11.Hiển thị thông tin các dịch vụ đi kèm đã được sử dụng bởi những khách hàng có ten_loai_khach là “Diamond” và có dia_chi ở “Vinh” hoặc “Quảng Ngãi”.
 SELECT dvdk.ma_dich_vu_di_kem, dvdk.ten_dich_vu_di_kem

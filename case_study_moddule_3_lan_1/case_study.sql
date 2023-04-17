@@ -1,31 +1,31 @@
-CREATE DATABASE case_study_1;
-USE case_study_1;
+CREATE DATABASE furama;
+USE furama;
 
 -- task 1 --
 
 CREATE TABLE vi_tri(
 ma_vi_tri INT PRIMARY KEY,
-ten_vi_tri VARCHAR(45)
+ten_vi_tri VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE trinh_do(
 ma_trinh_do INT PRIMARY KEY,
-ten_trinh_do VARCHAR(45)
+ten_trinh_do VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE bo_phan(
 	ma_bo_phan INT PRIMARY KEY,
-    ten_bo_phan VARCHAR(45)
+    ten_bo_phan VARCHAR(45) NOT NULL
     );
     
 CREATE TABLE nhan_vien(
 	ma_nhan_vien INT PRIMARY KEY,
-    ho_ten VARCHAR(45),
+    ho_ten VARCHAR(45) NOT NULL,
     ngay_sinh DATE,
-    so_cmnd VARCHAR(45),
+    so_cmnd VARCHAR(45) UNIQUE NOT NULL,
     luong DOUBLE,
-    so_dien_thoai VARCHAR(45),
-    email VARCHAR(45),
+    so_dien_thoai VARCHAR(45) NOT NULL,
+    email VARCHAR(45) UNIQUE NOT NULL,
     dia_chi VARCHAR(45),
     ma_vi_tri INT, FOREIGN KEY(ma_vi_tri) REFERENCES vi_tri(ma_vi_tri),
     ma_trinh_do INT, FOREIGN KEY(ma_trinh_do) REFERENCES trinh_do(ma_trinh_do),
@@ -34,17 +34,17 @@ CREATE TABLE nhan_vien(
     
 CREATE TABLE loai_khach(
 	ma_loai_khach INT PRIMARY KEY,
-    ten_loai_khach VARCHAR(45)
+    ten_loai_khach VARCHAR(45) NOT NULL
     );
     
 CREATE TABLE khach_hang(
 	ma_khach_hang INT PRIMARY KEY,
-    ho_ten VARCHAR(45),
+    ho_ten VARCHAR(45) NOT NULL,
     ngay_sinh DATE,
     gioi_tinh BIT(1),
-    so_cmnd VARCHAR(45),
-    so_dien_thoai VARCHAR(45),
-    email VARCHAR(45),
+    so_cmnd VARCHAR(45) UNIQUE NOT NULL,
+    so_dien_thoai VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL UNIQUE,
     dia_chi VARCHAR(45),
     ma_loai_khach INT,
     FOREIGN KEY(ma_loai_khach) REFERENCES loai_khach(ma_loai_khach)
@@ -87,8 +87,8 @@ CREATE TABLE hop_dong(
     );
 CREATE TABLE dich_vu_di_kem(
 	ma_dich_vu_di_kem INT PRIMARY KEY,
-    ten_dich_vu_di_kem VARCHAR(45),
-    gia DOUBLE,
+    ten_dich_vu_di_kem VARCHAR(45) NOT NULL,
+    gia DOUBLE NOT NULL,
     don_vi VARCHAR(45),
     trang_thai VARCHAR(45)
     );
@@ -190,43 +190,4 @@ INSERT INTO hop_dong_chi_tiet VALUES(1,5,2,4),
 									(6,1,1,3),
 									(7,2,1,2),
 									(8,2,12,2);
-
--- Task 3
-
--- 2. Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” 
--- và có tối đa 15 kí tự.
-SELECT * FROM nhan_vien
-WHERE ho_ten LIKE 'H%' OR ho_ten LIKE 'T%' OR ho_ten LIKE 'K%'
-AND LENGTH(ho_ten) <= 15;
-
--- 3. Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi
--- và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
-SELECT * FROM khach_hang
-WHERE round(datediff(curdate(),ngay_sinh)/365) BETWEEN 18 AND 50 AND (dia_chi LIKE'% Đà Nẵng' OR dia_chi LIKE'% Quảng Trị');
-
--- 4. Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần.
--- Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng.
--- Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.
-SELECT kh.*,lk.ten_loai_khach,count(kh.ma_khach_hang) AS so_lan_dat_phong
-FROM khach_hang kh
-JOIN loai_khach lk ON lk.ma_loai_khach=kh.ma_khach_hang 
-JOIN hop_dong hd ON hd.ma_khach_hang =kh.ma_khach_hang
-WHERE lk.ten_loai_khach="Diamond"
-GROUP BY kh.ma_khach_hang
-ORDER BY so_lan_dat_phong DESC;
-
--- 5.Hiển thị ma_khach_hang, ho_ten, ten_loai_khach, ma_hop_dong, ten_dich_vu, ngay_lam_hop_dong, ngay_ket_thuc, tong_tien 
--- (Với tổng tiền được tính theo công thức như sau: Chi Phí Thuê + Số Lượng * Giá, với Số Lượng và Giá là từ bảng dich_vu_di_kem, hop_dong_chi_tiet) 
--- cho tất cả các khách hàng đã từng đặt phòng. (những khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra).
-
-SELECT kh.ma_khach_hang,kh.ho_ten,lk.ten_loai_khach,hd.ma_hop_dong,dv.ten_dich_vu,hd.ngay_lam_hop_dong,hd.ngay_ket_thuc, ifnull(dv.chi_phi_thue+ifnull((hdct.so_luong*dvdk.gia),0),0) AS tong_tien
-FROM khach_hang kh
-LEFT JOIN hop_dong hd ON hd.ma_khach_hang=kh.ma_khach_hang
-LEFT JOIN dich_vu dv ON dv.ma_dich_vu= hd.ma_dich_vu
-JOIN loai_khach lk ON lk.ma_loai_khach=kh.ma_khach_hang 
-LEFT JOIN hop_dong_chi_tiet hdct ON hdct.ma_hop_dong = hd.ma_hop_dong
-LEFT JOIN dich_vu_di_kem dvdk ON hdct.ma_dich_vu_di_kem =dvdk.ma_dich_vu_di_kem
-ORDER BY tong_tien;
-
-
 
