@@ -23,9 +23,9 @@ CREATE TABLE nhan_vien(
     ho_ten VARCHAR(45) NOT NULL,
     ngay_sinh DATE,
     so_cmnd VARCHAR(45) UNIQUE NOT NULL,
-    luong DOUBLE,
+    luong DOUBLE NOT NULL,
     so_dien_thoai VARCHAR(45) NOT NULL,
-    email VARCHAR(45) UNIQUE NOT NULL,
+    email VARCHAR(45) UNIQUE,
     dia_chi VARCHAR(45),
     ma_vi_tri INT, FOREIGN KEY(ma_vi_tri) REFERENCES vi_tri(ma_vi_tri),
     ma_trinh_do INT, FOREIGN KEY(ma_trinh_do) REFERENCES trinh_do(ma_trinh_do),
@@ -41,7 +41,7 @@ CREATE TABLE khach_hang(
 	ma_khach_hang INT PRIMARY KEY,
     ho_ten VARCHAR(45) NOT NULL,
     ngay_sinh DATE,
-    gioi_tinh BIT(1),
+    gioi_tinh BIT(1) DEFAULT 0,
     so_cmnd VARCHAR(45) UNIQUE NOT NULL,
     so_dien_thoai VARCHAR(45) NOT NULL,
     email VARCHAR(45) NOT NULL UNIQUE,
@@ -52,17 +52,17 @@ CREATE TABLE khach_hang(
     
 CREATE TABLE loai_dich_vu(
 ma_loai_dich_vu INT PRIMARY KEY,
-ten_loai_dich_vu VARCHAR(45)
+ten_loai_dich_vu VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE kieu_thue(
 	ma_kieu_thue INT PRIMARY KEY,
-    ten_kieu_thue VARCHAR(45)
+    ten_kieu_thue VARCHAR(45) NOT NULL
     );
     
 CREATE TABLE dich_vu(
 ma_dich_vu INT PRIMARY KEY,
-ten_dich_vu VARCHAR(45),
+ten_dich_vu VARCHAR(45) NOT NULL,
 dien_tich INT,
 chi_phi_thue DOUBLE,
 so_nguoi_toi_da INT,
@@ -78,9 +78,9 @@ FOREIGN KEY(ma_loai_dich_vu) REFERENCES loai_dich_vu(ma_loai_dich_vu)
 );
 CREATE TABLE hop_dong(
 	ma_hop_dong INT PRIMARY KEY,
-    ngay_lam_hop_dong DATETIME,
-    ngay_ket_thuc DATETIME,
-    tien_dat_coc DOUBLE,
+    ngay_lam_hop_dong DATETIME NOT NULL,
+    ngay_ket_thuc DATETIME NOT NULL,
+    tien_dat_coc DOUBLE NOT NULL,
     ma_nhan_vien INT, FOREIGN KEY(ma_nhan_vien) REFERENCES nhan_vien(ma_nhan_vien),
     ma_khach_hang INT, FOREIGN KEY(ma_khach_hang) REFERENCES khach_hang(ma_khach_hang),
     ma_dich_vu INT, FOREIGN KEY(ma_dich_vu) REFERENCES dich_vu(ma_dich_vu)
@@ -164,8 +164,8 @@ INSERT INTO dich_vu_di_kem VALUES(1,"Karaoke",10000,"giờ","tiện nghi, hiện
 								(2,"Thuê xe máy",10000,"chiếc","hỏng 1 xe"),
 								(3,"Thuê xe đạp",20000,"chiếc","tốt"),
 								(4,"Buffet buổi sáng",15000,"suất","đầy đủ đồ ăn, tráng miệng"),
-								(5,"Buffet buổi trưa",15000,"suất","đầy đủ đồ ăn, tráng miệng"),
-								(6,"Buffet buổi tối",15000,"suất","đầy đủ đồ ăn, tráng miệng");
+								(5,"Buffet buổi trưa",90000,"suất","đầy đủ đồ ăn, tráng miệng"),
+								(6,"Buffet buổi tối",16000,"suất","đầy đủ đồ ăn, tráng miệng");
                                 
 -- Thêm dữ liệu vào bảng hợp đồng                              
 INSERT INTO hop_dong VALUES (1,"2020-12-08","2020-12-08",0,3,1,3),
@@ -190,4 +190,3 @@ INSERT INTO hop_dong_chi_tiet VALUES(1,5,2,4),
 									(6,1,1,3),
 									(7,2,1,2),
 									(8,2,12,2);
-
