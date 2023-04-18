@@ -38,12 +38,33 @@ SET SQL_SAFE_UPDATES =1;
 SET FOREIGN_KEY_CHECKS=1;
 
 -- 19.Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.
--- UPDATE  ma_dich_vu_di_kem
--- SELECT *FROM hop_dong_chi_tiet hdct
--- JOIN dich_vu_di_kem dvdk ON dvdk.ma_dich_vu_di_kem=hdct.ma_dich_vu_di_kem
--- JOIN hop_dong hd ON hd.ma_hop_dong = hdct.ma_hop_dong
--- WHERE year(hd.ngay_lam_hop_dong) =2020 AND hdct.so_luong>10;
+SET SQL_SAFE_UPDATES =0;
+UPDATE dich_vu_di_kem AS dvdk SET dvdk.gia=dvdk.gia*2
+WHERE dvdk.gia =(SELECT g FROM
+(SELECT dvdk.gia AS g FROM dich_vu_di_kem dvdk
+JOIN hop_dong_chi_tiet AS hdct ON dvdk.ma_dich_vu_di_kem=hdct.ma_dich_vu_di_kem
+JOIN hop_dong hd ON hd.ma_hop_dong = hdct.ma_hop_dong
+WHERE year(hd.ngay_lam_hop_dong) =2020 AND hdct.so_luong>10)AS gia);
+SET SQL_SAFE_UPDATES =1;
 
 -- 20.Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống, 
 -- thông tin hiển thị bao gồm id (ma_nhan_vien, ma_khach_hang), ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi.
--- SELECT ma_nhan_vien,ma_khach_hang FROM nhan_vien
+SELECT 
+    nv.ma_nhan_vien AS id,
+    nv.ho_ten,
+    nv.email,
+    nv.so_dien_thoai,
+    nv.ngay_sinh,
+    nv.dia_chi
+FROM
+    nhan_vien AS nv
+UNION
+SELECT
+	kh.ma_khach_hang,
+    kh.ho_ten,
+    kh.email,
+    kh.so_dien_thoai,
+    kh.ngay_sinh,
+    kh.dia_chi
+ FROM 
+	khach_hang AS kh

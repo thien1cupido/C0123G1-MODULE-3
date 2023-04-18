@@ -22,15 +22,16 @@ GROUP BY hd.ma_dich_vu;
 -- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên.
 
 -- Cách 1
-SELECT DISTINCT(ho_ten) FROM khach_hang;
+SELECT DISTINCT kh.id, kh.ho_ten FROM khach_hang AS kh;
 
 -- Cách 2
-SELECT ho_ten FROM khach_hang
-GROUP BY ho_ten;
+SELECT kh.id,kh.ho_ten FROM khach_hang AS kh
+GROUP BY khach_hang.id;
 
 -- Cách 3
-SELECT DISTINCT(ho_ten) FROM khach_hang
-WHERE ho_ten IN (SELECT ho_ten FROM khach_hang);
+SELECT DISTINCT kh.ma_khach_hang,kh.ho_ten FROM khach_hang AS kh
+UNION
+SELECT kh.ma_khach_hang,kh.ho_ten FROM khach_hang AS kh;
 
 -- 9.Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2021 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
 SELECT  month(ngay_lam_hop_dong) AS `month`,COUNT(ngay_lam_hop_dong) AS so_luong
