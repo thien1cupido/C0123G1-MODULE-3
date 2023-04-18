@@ -21,11 +21,11 @@ AND dv.ma_dich_vu NOT IN (SELECT hd.ma_dich_vu FROM hop_dong hd WHERE  YEAR (hd.
 -- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên.
 
 -- Cách 1
-SELECT DISTINCT kh.id, kh.ho_ten FROM khach_hang AS kh;
+SELECT DISTINCT kh.ma_khach_hang, kh.ho_ten FROM khach_hang AS kh;
 
 -- Cách 2
-SELECT kh.id,kh.ho_ten FROM khach_hang AS kh
-GROUP BY khach_hang.id;
+SELECT kh.ma_khach_hang,kh.ho_ten FROM khach_hang AS kh
+GROUP BY kh.ma_khach_hang;
 
 -- Cách 3
 SELECT DISTINCT kh.ma_khach_hang,kh.ho_ten FROM khach_hang AS kh
