@@ -87,7 +87,7 @@ CREATE PROCEDURE delect_product(IN delete_id INT)
 BEGIN
 DELETE FROM products
 WHERE (delete_id=id);
-END //
+END //	
 delimiter ;
 
 CALL delect_product(2);
