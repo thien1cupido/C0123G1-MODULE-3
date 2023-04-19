@@ -56,14 +56,16 @@ delimiter ;
 CALL get_all_products();
 -- Tạo store procedure thêm một sản phẩm mới
 delimiter //
-CREATE PROCEDURE add_product(IN id INT,product_code INT,product_name VARCHAR(50),product_price INT,product_amount INT,product_decription VARCHAR(50),product_status BIT(1))
+CREATE PROCEDURE add_product(IN new_id INT,IN new_product_code INT,IN new_product_name VARCHAR(50),
+IN new_product_price INT,IN new_product_amount INT,IN new_product_decription VARCHAR(50),IN new_product_status BIT(1))
 BEGIN
-INSERT INTO products
-VALUE (id,product_code,product_name,product_price,product_amount,product_decription,product_status);
+INSERT INTO products(id,product_code,product_name,product_price,product_amount,product_decription,product_status)
+VALUE (new_id,new_product_code,new_product_name,new_product_price,new_product_amount,new_product_decription,new_product_status);
 END //
 delimiter ;
 
--- Tạo store procedure sửa thông tin sản phẩm theo id
+ CALL add_product(6,6,"Nokia 5",1000,5,"moi",1);
+ -- Tạo store procedure sửa thông tin sản phẩm theo id
 delimiter //
 CREATE PROCEDURE update_product(IN new_id INT,
                                 IN new_name VARCHAR(50),
