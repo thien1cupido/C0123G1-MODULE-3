@@ -72,5 +72,5 @@ SELECT hd.ma_nhan_vien
 FROM hop_dong hd
 WHERE year(hd.ngay_lam_hop_dong) >= 2020 AND year(hd.ngay_lam_hop_dong) <= 2021
 GROUP BY hd.ma_nhan_vien
-HAVING COUNT(*) <= 3
+HAVING COUNT(hd.ma_nhan_vien) <= 3
 );

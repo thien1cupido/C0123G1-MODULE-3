@@ -28,9 +28,25 @@ SET FOREIGN_KEY_CHECKS =1;
 -- với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.
 
 delimiter //
-CREATE PROCEDURE sp_them_moi_hop_dong(IN id_khach_hang INT)
+CREATE PROCEDURE sp_them_moi_hop_dong(IN new_ma_hop_dong INT,IN new_ngay_lam_hop_dong DATETIME,IN new_ngay_ket_thuc DATETIME,
+IN new_tien_dat_coc DOUBLE,IN new_ma_nhan_vien INT,IN new_ma_khach_hang INT,IN new_ma_dich_vu INT)
 BEGIN
-DELETE FROM  khach_hang AS kh 
-WHERE kh.ma_khach_hang =id_khach_hang;
+INSERT INTO hop_dong(ma_hop_dong,ngay_lam_hop_dong,ngay_ket_thuc,tien_dat_coc,ma_nhan_vien,ma_khach_hang,ma_dich_vu)
+VALUE(new_ma_hop_dong,new_ngay_lam_hop_dong,new_ngay_ket_thuc,new_tien_dat_coc,new_ma_nhan_vien,new_ma_khach_hang,new_ma_dich_vu);
 END //
 delimiter ;
+
+CALL sp_them_moi_hop_dong(13,"2020-09-15","2021-01-15",30000,3,3,1);
+
+-- 25.Tạo Trigger có tên tr_xoa_hop_dong khi xóa bản ghi trong bảng hop_dong thì hiển thị tổng số lượng bản ghi còn lại có trong bảng hop_dong ra giao diện console của database.
+-- Lưu ý: Đối với MySQL thì sử dụng SIGNAL hoặc ghi log thay cho việc ghi ở console.
+
+delimiter //
+CREATE TRIGGER tr_xoa_hop_dong
+AFTER DELETE ON hop_dong
+FOR EACH ROW
+BEGIN
+DELETE FROM hop_dong WHERE ma_hop_dong =13;
+END //
+delimiter ;
+SELECT * FROM hop_dong;
