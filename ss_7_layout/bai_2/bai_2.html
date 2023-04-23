@@ -1,75 +1,104 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Bài 2</title>
-        <link rel="stylesheet" href="bai_2.css">
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+</head>
+
 <body>
-    <div class="row header">
-        <img src="ss_7_layout/bai_2/weeb.png" alt="Logo"> 
-    </div>
-    <div class="row header">
-        <div class="nav">
-            <ul>
-                <li>Phim hoạt hình</li>
-                <li>|</li>
-                <li>Phim hoạt hình yêu thích</li>
-                <li>|</li>
-                <li>Nhân vật hoạt hình</li>
-                <li>|</li>
-                <li>Góp ý</li>
-            </ul>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-s-12 col-m-4 col-l-2 left">
-            <ul>
-                <li>Link1</li>
-                <li>Link1</li>
-                <li>Link1</li>
-                <li>Link1</li>
-                <li>Link1</li>
-                <li>Link1</li>
-            </ul>
-        </div>
-        <div class=" col-s-12 col-m-8 col-l-8 center">
+    <div class="app">
+        <header class="logo">   
+        </header>
+        <header class="header">
+            <nav class="header__navbar">
+                <ul class="header__navbar-list">
+                    <li class="header__navbar-item header__navbar-item--separate">Phim hoạt hình</li>
+                    <li class="header__navbar-item header__navbar-item--separate">Phim hoạt hình yêu thích</li>
+                    <li class="header__navbar-item header__navbar-item--separate">Nhân vật hoạt hình</li>
+                    <li class="header__navbar-item">Góp ý</li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
             <div class="row">
-                <div class="col-s-12 col-m-3 col-l-3">
-                    <img src="da_nang.jpg" style="width: 100%"/></div>
-                <div class="col-s-12 col-m-9 col-l-9">
-                    <h2>Giới thiệu về Đà Nẵng</h2>
+                <div class="col-s-12 col-m-2 col-l-4 left">
+                    <div class="video">
+                        <iframe width="90%" height="300px" src="https://www.youtube.com/embed/EGoE47R1rYM"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                        <ul class="video_info_list">
+                            <li class="video-title">Welcom đến với khách sạn Nobi-</li>
+                            <li class="video-view">5,147,528 lượt xem</li>
+                            <p class="video-channel">Doreamon Vietsub</p>
+                        </ul>
+                        <div class="video">
+                            <iframe width="90%" height="300px" src="https://www.youtube.com/embed/zFEF1v8FHjw"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                            <ul class="video_info_list">
+                                <li class="video-title">Suneo khổng lồ-</li>
+                                <li class="video-view">5,147,528 lượt xem</li>
+                                <p class="video-channel">Doreamon Vietsub</p>
+                            </ul>
+                        </div>
+                        <div class="video">
+                            <iframe width="90%" height="300px" src="https://www.youtube.com/embed/zIauL7ZZ3C4"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                            <ul class="video_info_list">
+                                <li class="video-title">Con voi và người bác-</li>
+                                <li class="video-view">5,147,528 lượt xem</li>
+                                <p class="video-channel">Doreamon Vietsub</p>
+                            </ul>
+                        </div>
+                        <div class="video">
+                            <iframe width="90%" height="300px" src="https://www.youtube.com/embed/PnWfmOcxK5g"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                            <ul class="video_info_list">
+                                <li class="video-title">Chiếc máy tạo kẹo bông-</li>
+                                <li class="video-view">5,147,528 lượt xem</li>
+                                <p class="video-channel">Doreamon Vietsub</p>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-s-12 col-m-10 col-l-8 right">
+                    <div class="video">
+                        <iframe width="90%" height="520px" src="https://www.youtube.com/embed/BDj7TAvw6WI"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <ul class="video_info_list">
+                        <li class="video-title">Tớ là mari-</li>
+                        <li class="video-view">5,147,528 lượt xem</li>
+                        <p class="video-channel">Tác giả</p>
+                    </ul>
+                    <div class="description">
+                        <p>Bộ phim kể về câu chuyện Thạch Sanh chém Trăn Tinh cứu dân, bắn Đại Bàng cứu công chúa, dùng
+                            tiếng đàn nhân nghĩa dẹp tan quân xâm lăng. Nhưng cuộc đời Thạch Sanh luôn bị tên Lý Thông
+                            làm cho điêu đứng. Cuối cùng chính nghĩa đã thắng. Tên Lý Thông gian ác bị đền tội. Mời các
+                            bạn cùng đón xem và cảm nhận.
+                        </p>
                 </div>
             </div>
-            <div class="row ">
-                <p style="padding: 10px">
-                    Đà Nẵng là một thành phố trực thuộc trung ương, nằm trong vùng Duyên hải Nam Trung Bộ Việt Nam,
-                    là thành phố trung tâm và lớn nhất khu vực miền Trung - Tây Nguyên.
-                    Thành phố Đà Nẵng là thành phố tổng hợp đa ngành, đa lĩnh vực;
-                    trung tâm chính trị - kinh tế - xã hội với vai trò là trung tâm công nghiệp, tài chính, du lịch,
-                    dịch vụ, văn hóa, giáo dục - đào tạo, y tế chất lượng cao, khoa học - công nghệ, khởi nghiệp,
-                    đổi mới sáng tạo của khu vực Miền Trung - Tây Nguyên và cả nước;
-                    trung tâm tổ chức các sự kiện tầm khu vực và quốc tế. Thành phố Đà Nẵng đóng vai trò hạt nhân,
-                    quan trọng trong Vùng kinh tế trọng điểm miền Trung, đồng thời cũng là một trong 5 thành phố trực
-                    thuộc
-                    Trung ương
-                    ở Việt Nam, đô thị loại I, trung tâm cấp quốc gia, cùng với Hải Phòng và Cần Thơ.
-                </p>
+            
+        </div>
+        <div class="footer">
+            <div class="description__footer">
+            <p> &copy; 2017-Thiết kế web bởi trang hoathinhvn.net</p>
             </div>
         </div>
-        <div class="col-s-12 col-m-8 col-l-2 right">
-            <ul>
-                <li>Link1</li>
-                <li>Link1</li>
-                <li>Link1</li>
-                <li>Link1</li>
-                <li>Link1</li>
-                <li>Link1</li>
-            </ul>
-        </div>
-    </div>
-    <div class="row footer">
-        Footer
-    </div>
 </body>
 </html>
