@@ -1,0 +1,21 @@
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: white;
+}
+.shop_deals:hover{
+    background-color: white;
+}
+.nav-link_surface::after{
+    content: "";
+    height: 18px;
+    display: block;
+    border-left: 3px solid black;
+    top: 70%;
+    margin-left: -7px;
+    transform: translateY(-50%);
+}
