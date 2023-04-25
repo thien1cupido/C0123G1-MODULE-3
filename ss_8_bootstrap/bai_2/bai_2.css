@@ -10,12 +10,27 @@ a:hover {
 .shop_deals:hover{
     background-color: white;
 }
-.nav-link_surface::after{
-    content: "";
-    height: 18px;
-    display: block;
-    border-left: 3px solid black;
-    top: 70%;
-    margin-left: -7px;
-    transform: translateY(-50%);
+.bg{
+    background-image: url("https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/Hero_FY24_Surface-homepage_169?scl=1");
+    width: 100%;
+    background-size: 100%;
+    height: auto;
+}
+.content{
+    width: 40%;
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+.container-fluid{
+    padding: 0;
+}
+.list_device a{
+    color: black;
+    font-weight: 500;
+}
+.row2{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
 }

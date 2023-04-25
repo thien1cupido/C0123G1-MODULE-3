@@ -70,10 +70,9 @@
     font-weight: bold;
     font-size: 20px;
     height: 50px;
-    justify-content: center;
 }
 .left ul li{
-    margin-top: 20px;
+    margin-top: 20px;       
 }
 .left{
     background: gainsboro;
@@ -122,21 +121,6 @@ ul{
     .col-s-11 {width: 91.66667%;}
     .col-s-12 {width: 100%;}
     /*tăng kích thước font cho dễ đọc*/
-    li{
-        font-size: 15px;
-        text-align: center; 
-    }
-    .text{
-        width: 620px;
-        height: 550px;
-    }
-    p{
-        font-size: 30px;
-    }
-    .title{
-        font-size: 55px;
-        color: white;
-    }
 }
 /*Màn hinh laptop và máy tính bảng*/
 @media only screen and (min-width:741px)and (max-width:1240px){
@@ -152,10 +136,6 @@ ul{
     .col-m-10 {width: 83.33333%;}
     .col-m-11 {width: 91.66667%;}
     .col-m-12 {width: 100%;}
-    .text{
-        width: 730px;
-        height: 380px;
-    }
 }
 /*Màn hình máy tính pc và tivi smart*/
 @media only screen and (min-width:1241px){
@@ -165,7 +145,7 @@ ul{
     .col-l-4 {width: 33.33333%;}
     .col-l-5 {width: 41.66667%;}
     .col-l-6 {width: 50%;}
-    .col-l-7 {width: 58.33333%;}
+    .col-l-7 {width: 58.33333%;}    
     .col-l-8 {width: 66.66667%;}
     .col-l-9 {width: 75%;}
     .col-l-10 {width: 83.33333%;}
