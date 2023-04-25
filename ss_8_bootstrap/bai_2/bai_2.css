@@ -37,13 +37,13 @@ a:hover {
 div{
     display: block;
 }
-.header__navbar-item--separate::after{
+.nav-link_surface{
+    position: relative;
+}
+.nav-link_surface::before{
     content: "";
-    display: block;
     position: absolute;
-    border-left: 3px solid black;
+    border-left: 2px solid black;
     height: 23px;
-    left: -12px;
-    top: 50%;
-    transform: translateY(-50%);
+    left: -20px;
 }
