@@ -34,3 +34,16 @@ a:hover {
     margin-left: -0.75rem;
     margin-right: -0.75rem;
 }
+div{
+    display: block;
+}
+.header__navbar-item--separate::after{
+    content: "";
+    display: block;
+    position: absolute;
+    border-left: 3px solid black;
+    height: 23px;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
