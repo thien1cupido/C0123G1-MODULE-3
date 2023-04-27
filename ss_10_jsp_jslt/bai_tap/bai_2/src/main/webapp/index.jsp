@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simple com.example.bai_2.Calculator</title>
+    <title>Simple Calculator</title>
     <style>
         .container-form {
             width: 450px;
