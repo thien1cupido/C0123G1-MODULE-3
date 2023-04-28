@@ -114,6 +114,6 @@ public class ProductServlet extends HttpServlet {
         String name = request.getParameter("search");
         List<Product> productList= iProductService.searchProduct(name);
         request.setAttribute("productList",productList);
-        request.getRequestDispatcher("/find").forward(request,response);
+        request.getRequestDispatcher("/find.jsp").forward(request,response);
     }
 }

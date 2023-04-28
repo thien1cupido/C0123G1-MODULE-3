@@ -16,7 +16,8 @@
 <body>
 <div class="container-fluid">
     <h1>Tìm kiếm</h1>
-    <form class="d-flex" action="/product?action=find">
+    <form class="d-flex" action="/product">
+        <input type="hidden"name="action" value="find">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
