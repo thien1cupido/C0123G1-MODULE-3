@@ -5,18 +5,25 @@ import repository.IUserRepository;
 import repository.impl.UserRepository;
 import service.IUserService;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class UserService implements IUserService {
     private IUserRepository iUserRepository = new UserRepository();
-    @Override
-    public void insertUser(User user) throws SQLException {
 
+
+    @Override
+    public boolean saveUser(User user) {
+        return iUserRepository.saveUser(user);
     }
 
     @Override
     public User selectUser(int id) {
+        List<User>userList=iUserRepository.getAllUser();
+        for (int i = 0; i < userList.size(); i++) {
+            if (id==userList.get(i).getId()){
+                return userList.get(i);
+            }
+        }
         return null;
     }
 
@@ -27,12 +34,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean deleteUser(int id) throws SQLException {
-        return false;
+    public boolean deleteUser(int id) {
+        return  iUserRepository.deleteUser(id);
     }
 
     @Override
-    public boolean updateUser(User user) throws SQLException {
-        return false;
+    public boolean editUser(User user) {
+        return iUserRepository.updateUser(user);
     }
 }

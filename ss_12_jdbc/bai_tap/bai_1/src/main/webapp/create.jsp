@@ -15,19 +15,21 @@
 <body>
 <div class="container-fluid">
   <div class="row">
-    <h1>Thêm mới sản phẩm</h1>
+    <h1>Thêm mới user</h1>
   </div>
   <div class="row">
     <div>
-      <form method="post">
+      <form method="post" action="/user?action=create">
         <label>User Name</label>
         <input class="form-control" type="text" name="name"><br>
         <label>User Email</label>
-        <input class="form-control" type="number" name="price"><br>
+        <input class="form-control" type="text" name="email"><br>
         <label>Country</label>
-        <input class="form-control" type="text" name="description"><br>
+        <input class="form-control" type="text" name="country"><br>
         <button class="btn btn-success">Create</button>
       </form>
+      <button class="btn btn-success" onclick="window.location.href='/user'">Display list</button>
+      <p>${message}</p>
     </div>
   </div>
 </div>

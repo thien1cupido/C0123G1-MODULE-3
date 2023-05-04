@@ -40,6 +40,7 @@
                 </tr>
             </c:forEach>
         </table>
+        <button class="btn btn-success" onclick="window.location.href='/create.jsp'">Create</button>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

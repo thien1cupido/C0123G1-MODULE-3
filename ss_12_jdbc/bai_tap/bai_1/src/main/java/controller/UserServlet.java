@@ -15,16 +15,17 @@ public class UserServlet extends HttpServlet {
     private IUserService iUserService = new UserService();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
         }
         switch (action) {
             case "delete":
+                deleteUser(request, response);
                 break;
             case "edit":
-
+                sendUser(request,response);
                 break;
             default:
                 showList(request, response);
@@ -32,24 +33,104 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
         }
         switch (action) {
             case "create":
+                creatUser(request, response);
+                break;
+            case "edit":
+                editUser(request, response);
                 break;
         }
     }
 
-    public void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void showList(HttpServletRequest request, HttpServletResponse response) {
         List<User> userList = iUserService.getAllUsers();
         if (userList == null) {
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            try {
+                request.getRequestDispatcher("/error.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             request.setAttribute("userList", userList);
-            request.getRequestDispatcher("/list.jsp").forward(request, response);
+            try {
+                request.getRequestDispatcher("/list.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void creatUser(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
+        boolean check = iUserService.saveUser(new User(name, email, country));
+        String message = "";
+        if (check) {
+            message = "Thêm thành công";
+        } else {
+            message = "Thêm thất bại";
+        }
+        request.setAttribute("message", message);
+        try {
+            request.getRequestDispatcher("/create.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteUser(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        iUserService.deleteUser(id);
+        try {
+            response.sendRedirect("/user");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void sendUser(HttpServletRequest request, HttpServletResponse response){
+        int id = Integer.parseInt(request.getParameter("id"));
+        User user= iUserService.selectUser(id);
+        try {
+            request.setAttribute("user",user);
+            request.getRequestDispatcher("/edit.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void editUser(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
+        boolean check = iUserService.editUser(new User(id,name,email,country));
+        String message = "";
+        if (check) {
+            message = "Sửa thành công";
+        } else {
+            message = "Sửa thất bại";
+        }
+        request.setAttribute("message", message);
+        try {
+            request.getRequestDispatcher("/edit.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
