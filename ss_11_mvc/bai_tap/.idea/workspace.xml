@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f637f5de-1cfc-49f3-a9cc-8f041a226d1a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/bai_1/src/main/java/config/FilterUTF8.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss_12_jdbc/bai_tap/bai_1/src/main/java/connection/BaseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss_12_jdbc/bai_tap/bai_1/src/main/java/controller/UserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss_12_jdbc/bai_tap/bai_1/src/main/java/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss_12_jdbc/bai_tap/bai_1/src/main/java/repository/IUserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss_12_jdbc/bai_tap/bai_1/src/main/java/service/impl/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss_12_jdbc/bai_tap/bai_1/src/main/webapp/create.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss_12_jdbc/bai_tap/bai_1/src/main/webapp/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/bai_tap.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bai_1/src/main/java/controller/ProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/bai_1/src/main/java/controller/ProductServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/java/controller/ProductServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/java/model/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/java/respository/IRespositoryProduct.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/java/respository/RespositoryProduct.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/java/service/IProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/java/service/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/webapp/create.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/webapp/error.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/webapp/find.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/webapp/list.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../test/bai_tap/tesst/demo/src/main/webapp/update.jsp" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2P2Nc4AvUYXuYhxUAhrNOO7vh78" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/C0123G1-MODULE-3/ss_11_mvc/bai_tap/bai_1&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f637f5de-1cfc-49f3-a9cc-8f041a226d1a" name="Changes" comment="" />
+      <created>1682651292657</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682651292657</updated>
+      <workItem from="1682651293931" duration="24000" />
+      <workItem from="1683171065999" duration="22000" />
+      <workItem from="1683185099683" duration="34000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

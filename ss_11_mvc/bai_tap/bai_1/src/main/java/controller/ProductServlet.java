@@ -8,8 +8,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
+
 
 @WebServlet(name = "ProductServlet", value = "/product")
 public class ProductServlet extends HttpServlet {
@@ -30,7 +30,7 @@ public class ProductServlet extends HttpServlet {
                 delectProduct(request, response);
                 break;
             case "update":
-                extracted(request, response);
+                sendProduct(request, response);
                 break;
             case "find":
                 searchProduct(request,response);
@@ -41,7 +41,7 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-    private void extracted(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void sendProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = iProductService.getProduct(id);
         request.setAttribute("product", product);
@@ -75,9 +75,6 @@ public class ProductServlet extends HttpServlet {
             case "update":
                 updateProduct(request, response);
                 break;
-            default: {
-                showList(request, response);
-            }
         }
     }
 
@@ -86,8 +83,6 @@ public class ProductServlet extends HttpServlet {
         String name = request.getParameter("name");
         int price = Integer.parseInt(request.getParameter("price"));
         String description = request.getParameter("description");
-        byte[] bytes = description.getBytes(StandardCharsets.ISO_8859_1);
-        description = new String(bytes, StandardCharsets.UTF_8);
         String manufacturer = request.getParameter("manufacturer");
         iProductService.saveProduct(new Product(id, name, price, description, manufacturer));
         response.sendRedirect("/product");
@@ -104,8 +99,6 @@ public class ProductServlet extends HttpServlet {
         String name = request.getParameter("name");
         int price = Integer.parseInt(request.getParameter("price"));
         String description = request.getParameter("description");
-        byte[] bytes = description.getBytes(StandardCharsets.ISO_8859_1);
-        description = new String(bytes, StandardCharsets.UTF_8);
         String manufacturer = request.getParameter("manufacturer");
         iProductService.updateProduct(new Product(id, name, price, description, manufacturer));
         response.sendRedirect("/product");

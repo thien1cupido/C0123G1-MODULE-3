@@ -1,17 +1,16 @@
 package service;
 
 import model.Product;
-import respository.IRespositoryProduct;
-import respository.RespositoryProduct;
+import respository.IProductRespository;
+import respository.ProductRespository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService implements IProductService {
-    private IRespositoryProduct iRespositoryProduct = new RespositoryProduct();
-    private List<Product> productList = iRespositoryProduct.getAll();
+    private IProductRespository iProductRespository = new ProductRespository();
     @Override
     public List<Product> getAll() {
+        List<Product>productList =iProductRespository.getAll();
         if (productList.size() == 0) {
             System.out.println("Không có dữ liệu");
             return null;
@@ -21,22 +20,23 @@ public class ProductService implements IProductService {
 
     @Override
     public void saveProduct(Product product) {
-        iRespositoryProduct.saveProduct(product);
+        iProductRespository.saveProduct(product);
     }
 
     @Override
     public void deleteProduct(int id) {
-        iRespositoryProduct.delete(id);
+        iProductRespository.delete(id);
     }
 
     @Override
     public void updateProduct(Product product) {
-        iRespositoryProduct.delete(product.getId());
-        iRespositoryProduct.saveProduct(product);
+        iProductRespository.delete(product.getId());
+        iProductRespository.saveProduct(product);
     }
 
     @Override
     public Product getProduct(int id) {
+        List<Product> productList = iProductRespository.getAll();
         Product product=null;
         for (int i = 0; i < productList.size(); i++) {
             if (id==productList.get(i).getId()){
@@ -48,12 +48,12 @@ public class ProductService implements IProductService {
 
     @Override
     public List<Product> searchProduct(String name) {
-        List<Product>productList1=new ArrayList<>();
+        List<Product>productList=iProductRespository.getAll();
         for (int i = 0; i < productList.size(); i++) {
             if (name.equals(productList.get(i).getName())){
-                productList1.add(productList.get(i));
+                productList.add(productList.get(i));
             }
         }
-        return productList1;
+        return productList;
     }
 }
