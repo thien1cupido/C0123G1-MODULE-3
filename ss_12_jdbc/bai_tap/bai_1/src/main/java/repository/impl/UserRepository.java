@@ -69,18 +69,16 @@ public class UserRepository implements IUserRepository {
     @Override
     public User selectUser(int id) {
         Connection connection = BaseRepository.getConnectDB();
-        User user=null;
+        User user = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                int idOld = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String email = resultSet.getString("email");
-                String country = resultSet.getString("country");
-                user = new User(idOld, name, email, country);
-            }
+            int idOld = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String email = resultSet.getString("email");
+            String country = resultSet.getString("country");
+            user = new User(idOld, name, email, country);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
