@@ -11,5 +11,9 @@ public interface IUserRepository {
 
     boolean deleteUser(int id);
 
+    User selectUser(int id);
+
     boolean updateUser(User user);
+
+    List<User> searchUser(String name);
 }

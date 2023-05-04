@@ -27,6 +27,12 @@ public class UserServlet extends HttpServlet {
             case "edit":
                 sendUser(request,response);
                 break;
+            case "search":
+                searchUser(request,response);
+                break;
+            case "sort":
+                sortUser(request,response);
+                break;
             default:
                 showList(request, response);
         }
@@ -127,6 +133,29 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("message", message);
         try {
             request.getRequestDispatcher("/edit.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void searchUser(HttpServletRequest request,HttpServletResponse response){
+        String name = request.getParameter("search");
+        List<User> userList= iUserService.search(name);
+        request.setAttribute("userList",userList);
+        try {
+            request.getRequestDispatcher("/list.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void sortUser(HttpServletRequest request,HttpServletResponse response){
+        List<User> userList= iUserService.sortUser();
+        request.setAttribute("userList",userList);
+        try {
+            request.getRequestDispatcher("list.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

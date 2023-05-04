@@ -5,6 +5,7 @@ import repository.IUserRepository;
 import repository.impl.UserRepository;
 import service.IUserService;
 
+import java.util.Collections;
 import java.util.List;
 
 public class UserService implements IUserService {
@@ -18,28 +19,35 @@ public class UserService implements IUserService {
 
     @Override
     public User selectUser(int id) {
-        List<User>userList=iUserRepository.getAllUser();
-        for (int i = 0; i < userList.size(); i++) {
-            if (id==userList.get(i).getId()){
-                return userList.get(i);
-            }
-        }
-        return null;
+        return iUserRepository.selectUser(id);
     }
 
     @Override
     public List<User> getAllUsers() {
-        List<User>userList =iUserRepository.getAllUser();
+        List<User> userList = iUserRepository.getAllUser();
         return userList;
     }
 
     @Override
     public boolean deleteUser(int id) {
-        return  iUserRepository.deleteUser(id);
+        return iUserRepository.deleteUser(id);
     }
 
     @Override
     public boolean editUser(User user) {
         return iUserRepository.updateUser(user);
+    }
+
+    @Override
+    public List<User> search(String name) {
+        List<User> userList = iUserRepository.searchUser(name);
+        return userList;
+    }
+
+    @Override
+    public List<User> sortUser() {
+        List<User> userList = iUserRepository.getAllUser();
+        Collections.sort(userList);
+        return userList;
     }
 }

@@ -29,7 +29,7 @@
         <button class="btn btn-success">Create</button>
       </form>
       <button class="btn btn-success" onclick="window.location.href='/user'">Display list</button>
-      <p>${message}</p>
+      <p style="color: blue;font-weight: bold;justify-content: center">${message}</p>
     </div>
   </div>
 </div>

@@ -20,7 +20,7 @@
     <div class="row">
         <div>
             <form method="post" action="/user?action=edit">
-                <input class="form-control" hidden type="text" name="id" value="${user.getId()}"><br>
+                <input class="form-control" hidden name="id" value="${user.getId()}"><br>
                 <label>ID</label>
                 <input class="form-control" disabled type="text" name="id1" value="${user.getId()}"><br>
                 <label>User Name</label>

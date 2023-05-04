@@ -16,5 +16,9 @@ public interface IUserService {
     boolean deleteUser(int id);
 
     boolean editUser(User user);
+
+    List<User> search(String name);
+
+    List<User> sortUser();
 }
 
