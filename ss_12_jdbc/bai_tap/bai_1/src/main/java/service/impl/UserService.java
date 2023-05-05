@@ -46,8 +46,7 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> sortUser() {
-        List<User> userList = iUserRepository.getAllUser();
-        Collections.sort(userList);
+        List<User> userList = iUserRepository.sortUser();
         return userList;
     }
 }

@@ -15,6 +15,7 @@ public class UserRepository implements IUserRepository {
     private final String SELECT_ALL = "SELECT *FROM users;";
     private final String INSERT_INTO = "INSERT INTO users(name,email,country) VALUES(?,?,?);";
     private final String DELETE_USER = "DELETE FROM users WHERE id = ?;";
+    private final String SORT_USER = "SELECT *FROM users AS s ORDER BY s.name;";
     private final String SELECT_USER = "SELECT *FROM users WHERE id = ?;";
     private final String UPDATE_USER = "UPDATE users SET name=?,email=?,country=? WHERE id=?";
     private final String SEARCH_USER = "SELECT *FROM users WHERE name=?";
@@ -105,7 +106,6 @@ public class UserRepository implements IUserRepository {
     public List<User> searchUser(String name) {
         List<User> userList = new ArrayList<>();
         Connection connection = BaseRepository.getConnectDB();
-
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER);
             preparedStatement.setString(1, name);
@@ -116,6 +116,25 @@ public class UserRepository implements IUserRepository {
                 String email = resultSet.getString("email");
                 String country = resultSet.getString("country");
                 userList.add(new User(id, nameOld, email, country));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+    @Override
+    public List<User> sortUser(){
+        List<User> userList = new ArrayList<>();
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SORT_USER);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String country = resultSet.getString("country");
+                userList.add(new User(id, name, email, country));
             }
         } catch (SQLException e) {
             e.printStackTrace();
