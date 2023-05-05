@@ -9,6 +9,8 @@ public interface IUserRepository {
 
     boolean saveUser(User user);
 
+    boolean addUserTransaction(User user);
+
     boolean deleteUser(int id);
 
     User selectUser(int id);

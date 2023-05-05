@@ -22,7 +22,7 @@ public class UserRepository implements IUserRepository {
         List<User> userList = new ArrayList<>();
         Connection connection = BaseRepository.getConnectDB();
         try {
-            CallableStatement callableStatement =connection.prepareCall(SELECT_ALL);
+            CallableStatement callableStatement = connection.prepareCall(SELECT_ALL);
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -52,10 +52,37 @@ public class UserRepository implements IUserRepository {
         return false;
     }
 
+    @Override
+    public boolean addUserTransaction(User user) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getCountry());
+            boolean rowAffect=preparedStatement.executeUpdate()>0;
+            if (rowAffect) {
+                connection.commit();
+                return true;
+            }else {
+                connection.rollback();
+            }
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+                connection.commit();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        return false;
+    }
+
     public boolean deleteUser(int id) {
         Connection connection = BaseRepository.getConnectDB();
         try {
-            CallableStatement callableStatement =connection.prepareCall(DELETE_USER);
+            CallableStatement callableStatement = connection.prepareCall(DELETE_USER);
             callableStatement.setInt(1, id);
             return callableStatement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -89,8 +116,8 @@ public class UserRepository implements IUserRepository {
     public boolean updateUser(User user) {
         Connection connection = BaseRepository.getConnectDB();
         try {
-            CallableStatement callableStatement =connection.prepareCall(UPDATE_USER);
-            callableStatement.setInt(1,user.getId());
+            CallableStatement callableStatement = connection.prepareCall(UPDATE_USER);
+            callableStatement.setInt(1, user.getId());
             callableStatement.setString(2, user.getName());
             callableStatement.setString(3, user.getEmail());
             callableStatement.setString(4, user.getCountry());
@@ -121,8 +148,9 @@ public class UserRepository implements IUserRepository {
         }
         return userList;
     }
+
     @Override
-    public List<User> sortUser(){
+    public List<User> sortUser() {
         List<User> userList = new ArrayList<>();
         Connection connection = BaseRepository.getConnectDB();
         try {

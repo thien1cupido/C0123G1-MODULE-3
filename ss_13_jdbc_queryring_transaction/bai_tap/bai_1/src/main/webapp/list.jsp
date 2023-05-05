@@ -72,6 +72,7 @@
     </div>
     <button class="btn btn-success" onclick="window.location.href='/create.jsp'">Create</button>
     <button class="btn btn-success" onclick="window.location.href='/user?action=sort'">Sort</button>
+    <button class="btn btn-success" onclick="window.location.href='/create.jsp'">Transaction</button>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

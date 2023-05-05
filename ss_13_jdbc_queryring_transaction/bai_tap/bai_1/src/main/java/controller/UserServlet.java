@@ -48,9 +48,33 @@ public class UserServlet extends HttpServlet {
             case "create":
                 creatUser(request, response);
                 break;
+            case "transaction":
+                transaction(request, response);
+                break;
             case "edit":
                 editUser(request, response);
                 break;
+        }
+    }
+
+    private void transaction(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
+        boolean check = iUserService.addUser(new User(name, email, country));
+        String message = "";
+        if (check) {
+            message = "Thêm thành công";
+        } else {
+            message = "Thêm thất bại";
+        }
+        request.setAttribute("message", message);
+        try {
+            request.getRequestDispatcher("/transaction.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -142,13 +166,17 @@ public class UserServlet extends HttpServlet {
     public void searchUser(HttpServletRequest request,HttpServletResponse response){
         String name = request.getParameter("search");
         List<User> userList= iUserService.search(name);
-        request.setAttribute("userList",userList);
-        try {
-            request.getRequestDispatcher("/list.jsp").forward(request,response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (userList.size()==0){
+            showList(request,response);
+        }else {
+            request.setAttribute("userList", userList);
+            try {
+                request.getRequestDispatcher("/list.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     public void sortUser(HttpServletRequest request,HttpServletResponse response){

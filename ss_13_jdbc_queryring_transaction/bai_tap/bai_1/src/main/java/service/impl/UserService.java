@@ -5,7 +5,6 @@ import repository.IUserRepository;
 import repository.impl.UserRepository;
 import service.IUserService;
 
-import java.util.Collections;
 import java.util.List;
 
 public class UserService implements IUserService {
@@ -48,5 +47,10 @@ public class UserService implements IUserService {
     public List<User> sortUser() {
         List<User> userList = iUserRepository.sortUser();
         return userList;
+    }
+
+    @Override
+    public boolean addUser(User user) {
+        return iUserRepository.addUserTransaction(user);
     }
 }

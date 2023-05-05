@@ -20,5 +20,7 @@ public interface IUserService {
     List<User> search(String name);
 
     List<User> sortUser();
+
+    boolean addUser(User user);
 }
 
