@@ -30,10 +30,10 @@
                 <label>Country</label>
                 <input class="form-control" type="text" name="country" value="${user.getCountry()}"><br>
                 <button class="btn btn-success">Edit</button>
+                <button type="button" class="btn btn-success" onclick="window.location.href='/user'">Display list</button>
             </form>
         </div>
     </div>
-    <button class="btn btn-success" onclick="window.location.href='/user'">Display list</button>
     <p>${message}</p>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

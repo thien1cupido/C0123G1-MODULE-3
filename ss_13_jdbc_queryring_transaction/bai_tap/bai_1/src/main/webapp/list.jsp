@@ -20,7 +20,7 @@
     </div>
     <div class="row">
         <div class="col-auto d-flex">
-            <form action="/user">
+            <form action="/user" class="d-flex">
                 <input type="hidden" name="action" value="search">
                 <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
