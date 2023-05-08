@@ -1,3 +1,5 @@
+package com.codegym;
+
 public class QuadraticEquation2 {
     public static void quadraticEquation2(double a, double b, double c) {
         double delta = b * b - 4 * a * c;
